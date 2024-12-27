@@ -2,7 +2,7 @@ const userModel = require('../models/user.model');
 const userService = require('../services/user.service');
 const { validationResult } = require('express-validator')
 
-//this function will register the user using required fields:
+//this controller function will register the user using required fields:
 module.exports.registerUser = async (req, res, next) => {
     //check errors in the data using express-validator:
     const errors = validationResult(req);
@@ -31,3 +31,34 @@ module.exports.registerUser = async (req, res, next) => {
     console.log(token)
     res.status(200).json({ token, user });
 }
+
+// this controller function will login the user using email and password:
+module.exports.loginUser = async (req, res, next) => {
+
+    //check errors in the data using express-validator:
+    const errors = validationResult(req);
+
+    //if there are errors it will return the errors:
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+    //if there are no errors it will find the user using email:
+    const { email, password } = req.body;
+    // console.log(email, password);
+
+    const user = await userModel.findOne({ email }).select('+password');
+    // console.log(user);
+
+    //if user is not found it will return invalid email or password:
+    if (!user) {
+        return res.status(401).json({ message: "Invalid email or password" })
+    }
+    //if user is found it will compare the password using comparePassword:
+    const isMatch = await user.comparePassword(password);
+    if (!isMatch) {
+        return res.status(401).json({ message: "Invalid email or password" });
+    }
+    //if email and password is correct it will generate a token using user's id:
+    const token = user.generateAuthToken();
+    res.status(200).json({ token, user });
+};

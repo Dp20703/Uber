@@ -1,6 +1,6 @@
 const userModel = require('../models/user.model');
 const userService = require('../services/user.service');
-const { validationResult } = require('express-validator')
+const { validationResult } = require('express-validator');
 
 //this controller function will register the user using required fields:
 module.exports.registerUser = async (req, res, next) => {
@@ -60,5 +60,13 @@ module.exports.loginUser = async (req, res, next) => {
     }
     //if email and password is correct it will generate a token using user's id:
     const token = user.generateAuthToken();
+    //it will set the token in the cookies:
+    res.cookie('token', token);
     res.status(200).json({ token, user });
 };
+
+//this controller function will get the user profile using user's id:
+module.exports.getUserProfile = async (req, res, next) => {
+    const user = req.user;
+    return res.status(200).json(user);
+}

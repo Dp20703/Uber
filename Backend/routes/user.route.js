@@ -20,5 +20,7 @@ router.post('/login', [
 // /users/profile:
 router.get('/profile', authMiddleware.authUser, userController.getUserProfile)
 
+// /users/logout:
+router.get('/logout', authMiddleware.authUser, userController.logoutUser)
 
 module.exports = router;

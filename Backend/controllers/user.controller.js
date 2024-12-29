@@ -1,6 +1,7 @@
 const userModel = require('../models/user.model');
 const userService = require('../services/user.service');
 const { validationResult } = require('express-validator');
+const BlacklistTokenModel = require('../models/blacklistToken.model')
 
 //this controller function will register the user using required fields:
 module.exports.registerUser = async (req, res, next) => {
@@ -69,4 +70,12 @@ module.exports.loginUser = async (req, res, next) => {
 module.exports.getUserProfile = async (req, res, next) => {
     const user = req.user;
     return res.status(200).json(user);
+}
+
+//this controller function will logout the user:
+module.exports.logoutUser = async (req, res, next) => {
+    res.clearCookie('token');
+    const token = req.cookies.token || req.headers?.authorization.split(' ')[1];
+    BlacklistTokenModel.create({ token: token });
+    return res.status(200).json({ message: "User logged out successfully" });
 }

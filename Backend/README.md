@@ -48,3 +48,48 @@ The request body should be a JSON object with the following fields:
     - `lastname` (string): The last name of the user.
   - `email` (string): The email of the user.
 - `token` (string): JWT token
+
+## `/users/profile` Endpoint
+
+### Description
+This endpoint retrieves the profile information of the authenticated user.
+
+### Method
+`GET`
+
+### Authentication
+Requires valid JWT token in:
+- Authorization header: `Bearer <token>` or
+- Cookie: `token=<token>`
+
+### Example Response
+
+- **Success (200)**
+
+- `user` (object):
+  - `fullname` (object): An object containing the user's full name.
+    - `firstname` (string): The first name of the user.
+    - `lastname` (string): The last name of the user.
+  - `email` (string): The email of the user.
+
+
+## `/users/logout` Endpoint
+
+### Description
+This endpoint logs out the current user by invalidating their token provided in cookie or headers.
+
+### Method
+`GET`
+
+### Authentication
+Requires valid JWT token in:
+- Authorization header: Bearer <token> or
+- Cookie: token=<token>
+
+### Example Response
+
+- **Success (200)**
+  - `message` (string): "User successfully logged out."
+- **Unauthorized (401)**
+  - `error` (string): "Unauthorized"
+

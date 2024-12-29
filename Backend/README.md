@@ -84,7 +84,7 @@ This endpoint logs out the current user by invalidating their token provided in 
 ### Authentication
 Requires valid JWT token in:
 - Authorization header: Bearer <token> or
-- Cookie: token=<token>
+- Cookie: `token=<token>`
 
 ### Example Response
 

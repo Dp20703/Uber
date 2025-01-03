@@ -93,3 +93,42 @@ Requires valid JWT token in:
 - **Unauthorized (401)**
   - `error` (string): "Unauthorized"
 
+## Captain Routes
+
+### `/captains/register` Endpoint
+
+### Description
+Register a new captain with vehicle details.
+
+### Method
+`POST`
+
+### Request Body
+- `fullname` (object): Captain's full name
+  - `firstname` (string, required): Minimum 3 characters
+  - `lastname` (string, optional)
+- `email` (string, required): Valid email address
+- `password` (string, required): Minimum 6 characters
+- `vehical` (object): Vehicle details
+  - `color` (string, required): Minimum 3 characters
+  - `plate` (string, required): Minimum 3 characters
+  - `capacity` (number, required): Minimum value 1
+  - `vehicalType` (string, required): Must be one of: 'car', 'motorcycle', 'auto'
+
+### Example Responses
+
+#### Success Response
+**Status Code**: `201 Created`
+
+- `captain` (object):
+  - `fullname` (object): An object containing the captain's full name.
+    - `firstname` (string): The first name of the captain.
+    - `lastname` (string): The last name of the captain.
+  - `email` (string): The email of the captain.
+  - `password` (string):The captain's Password.
+  - `vehical` (object): Vehicle details
+    - `color` (string): Vehical's color.
+    - `plate` (string): Vehical's plate.
+    - `capacity` (number): Vehical's capacity.
+    - `vehicalType` (string): Vehical's type.
+  - `token` (string): JWT token

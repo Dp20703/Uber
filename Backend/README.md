@@ -1,5 +1,7 @@
 # API Documentation
 
+## Users Routes
+
 ## `/users/register` Endpoint
 
 ### Description
@@ -95,7 +97,7 @@ Requires valid JWT token in:
 
 ## Captain Routes
 
-### `/captains/register` Endpoint
+## `/captains/register` Endpoint
 
 ### Description
 Register a new captain with vehicle details.
@@ -133,7 +135,7 @@ Register a new captain with vehicle details.
     - `vehicalType` (string): Vehical's type.
   - `token` (string): JWT token
 
-### `/captains/login` Endpoint
+## `/captains/login` Endpoint
 
 ### Description
 Login for registered captains.
@@ -163,7 +165,7 @@ Login for registered captains.
     - `vehicalType` (string): Vehical's type.
   - `token` (string): JWT token
 
-### `/captains/profile` Endpoint
+## `/captains/profile` Endpoint
 
 ### Description
   Get authenticated captain's profile information.
@@ -193,7 +195,7 @@ Requires valid JWT token in:
     - `vehicalType` (string): Vehical's type.
   - `status` (string):vehical's status.
 
-### `/captains/logout` Endpoint
+## `/captains/logout` Endpoint
 
 ### Description
   Logout captain and invalidate JWT token.

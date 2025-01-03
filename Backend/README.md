@@ -132,3 +132,84 @@ Register a new captain with vehicle details.
     - `capacity` (number): Vehical's capacity.
     - `vehicalType` (string): Vehical's type.
   - `token` (string): JWT token
+
+### `/captains/login` Endpoint
+
+### Description
+Login for registered captains.
+
+### Method
+`POST`
+
+### Request Body
+- `email` (string, required): Valid email address
+- `password` (string, required): Minimum 6 characters
+
+### Responses
+
+#### Success Response
+**Status Code**: `200 OK`
+
+- `captain` (object):
+  - `fullname` (object): An object containing the captain's full name.
+    - `firstname` (string): The first name of the captain.
+    - `lastname` (string): The last name of the captain.
+  - `email` (string): The email of the captain.
+  - `password` (string):The captain's Password.
+  - `vehical` (object): Vehicle details
+    - `color` (string): Vehical's color.
+    - `plate` (string): Vehical's plate.
+    - `capacity` (number): Vehical's capacity.
+    - `vehicalType` (string): Vehical's type.
+  - `token` (string): JWT token
+
+### `/captains/profile` Endpoint
+
+### Description
+  Get authenticated captain's profile information.
+
+### Method
+`GET`
+
+### Authentication
+Requires valid JWT token in:
+- Authorization header: `Bearer <token>` or
+- Cookie: `token=<token>`
+
+### Example Response
+
+- **Success (200)**
+
+- `captain` (object):
+  - `fullname` (object): An object containing the captain's full name.
+    - `firstname` (string): The first name of the captain.
+    - `lastname` (string): The last name of the captain.
+  - `email` (string): The email of the captain.
+  - `password` (string):The captain's Password.
+  - `vehical` (object): Vehicle details
+    - `color` (string): Vehical's color.
+    - `plate` (string): Vehical's plate.
+    - `capacity` (number): Vehical's capacity.
+    - `vehicalType` (string): Vehical's type.
+  - `status` (string):vehical's status.
+
+### `/captains/logout` Endpoint
+
+### Description
+  Logout captain and invalidate JWT token.
+
+### Method
+`GET`
+
+### Authentication
+Requires valid JWT token in:
+- Authorization header: `Bearer <token>` or
+- Cookie: `token=<token>`
+
+### Example Response
+
+- **Success (200)**
+
+  - `message` (string): "captain successfully logged out."
+- **Unauthorized (401)**
+  - `error` (string): "Unauthorized"

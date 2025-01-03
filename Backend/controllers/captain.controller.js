@@ -45,3 +45,39 @@ module.exports.registerCaptain = async (req, res, next) => {
     console.log(captain)
     res.status(201).json({ token, captain });
 }
+
+//this controller function will login the captain using required fields:
+module.exports.loginCaptain = async (req, res, next) => {
+
+    //check errors in the data using express-validator:
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() })
+    }
+    //destructuring data from req:
+    const { email, password } = req.body;
+
+    //Checking if the captain is already exist or not:
+    const captain = await captainModel.findOne({ email }).select('+password');
+    if (!captain) {
+        return res.status(401).json({ message: 'Invalid email or password' })
+    }
+
+    //comparing the password with the hashPassword:
+    const isMatch = await captainModel.comparePassword(password);
+
+    //if password is not matched:
+    if (!isMatch) {
+        return res.status(401).json({ message: 'Invalid email or password' })
+    }
+
+    //generating a token using captain's id:
+    const token = await captain.generateAuthToken();
+
+    //Storing the token in the cookie:
+    res.cookie('token', token)
+
+    //sending the token and captain data in response: 
+    res.status(200).json({ token, captain })
+}
+

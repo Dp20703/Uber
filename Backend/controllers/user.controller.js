@@ -82,8 +82,8 @@ module.exports.getUserProfile = async (req, res, next) => {
 
 //this controller function will logout the user:
 module.exports.logoutUser = async (req, res, next) => {
-    res.clearCookie('token');
     const token = req.cookies.token || req.headers?.authorization.split(' ')[1];
     BlacklistTokenModel.create({ token: token });
+    res.clearCookie('token');
     return res.status(200).json({ message: "User logged out successfully" });
 }

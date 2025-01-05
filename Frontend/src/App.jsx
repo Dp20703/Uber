@@ -1,8 +1,22 @@
 import React from 'react'
+import { Route, Routes } from 'react-router-dom'
+import Home from './Pages/Home'
+import UserLogin from './Pages/UserLogin'
+import UserSignup from './Pages/UserSignup'
+import CaptainLogin from './Pages/CaptainLogin'
+import CaptainSignup from './Pages/CaptainSignup'
 
 const App = () => {
   return (
-    <div className='text-9xl bg-red-500 outline-double p-5  text-center m-5 mb-5'>App</div>
+    <>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<UserLogin />} />
+        <Route path="/signup" element={<UserSignup />} />
+        <Route path="/captain-login" element={<CaptainLogin />} />
+        <Route path="/captain-signup" element={<CaptainSignup />} />
+      </Routes>
+    </>
   )
 }
 

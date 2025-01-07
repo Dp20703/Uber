@@ -22,16 +22,16 @@ const UserLogin = () => {
           submitHandler(e)
         }}>
           <h1 className='text-lg font-medium mb-2'>Enter your email:</h1>
-          <input type="text" className='bg-[#eeeeee] mb-7 rounded-lg px-4 py-2 border w-full text-lg placeholder:text-base' placeholder="example@gmail.com"
+          <input type="text" className='bg-[#eeeeee] mb-6 rounded-lg px-4 py-2 border w-full text-lg placeholder:text-base' placeholder="example@gmail.com"
             value={email} onChange={(e) => {
               setEmail(e.target.value);
             }} required />
 
           <h1 className='font-medium text-lg mb-2'>Enter your password:</h1>
-          <input className='border text-lg px-4 w-full py-2 bg-[#eeeeee] mb-7 rounded ' type="password" placeholder="Password" required value={password} onChange={(e) => {
+          <input className='border text-lg px-4 w-full py-2 bg-[#eeeeee] mb-6 rounded ' type="password" placeholder="Password" required value={password} onChange={(e) => {
             setPassword(e.target.value);
           }} />
-          <button className='py-2 px-4 bg-[#111] text-white mb-7 text-lg font-semibold w-full rounded-lg'>Login</button>
+          <button className='py-2 px-4 bg-[#111] text-white mb-6 text-lg font-semibold w-full rounded-lg'>Login</button>
         </form>
         <p className='text-center'>Don't have an account?
           <Link to="/signup" className='text-[#111] font-semibold underline'> Sign up</Link>

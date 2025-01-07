@@ -32,7 +32,7 @@ const CaptainSignup = () => {
           <form onSubmit={(e) => {
             submitHandler(e)
           }}>
-            <h1 className='mb-2 font-medium text-lg'>Enter Captain's name:</h1>
+            <h1 className='mb-2 font-medium text-lg '>Enter Captain's name:</h1>
             <div className="mb-6 flex gap-4 ">
               <input type="text" className='bg-[#eeeeee]  rounded-lg px-4 py-2 border w-full text-lg placeholder:text-base' placeholder="First name" value={firstname} onChange={(e) => {
                 setFirstname(e.target.value);

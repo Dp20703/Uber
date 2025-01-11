@@ -1,17 +1,20 @@
 import axios from 'axios';
 import React, { useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import {ContextUser} from '../Context/ContextUser'
+import { UserDataContext } from '../Context/MainContext'
+
+
 const UserSignup = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [firstname, setFirstname] = useState('')
   const [lastname, setLastname] = useState('')
-  const [userData, setUserData] = useState({})
+  // const [userData, setUserData] = useState({})
 
   const navigate = useNavigate();
-const {user,setUser}=useContext(ContextUser);
-console.log(user)
+  const { user, setUser } = useContext(UserDataContext)
+  // console.log(user)
+
   // Function to handle form submission of signup form:
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -23,12 +26,31 @@ console.log(user)
       email: email,
       password: password,
     }
-    console.log(newUser);
+    // console.log(newUser);
 
-    const response = await axios.post(`${import.meta.env.VITE_BASE_URL / users / register}`, newUser);
-    console.log(response);
-    if (response.status == 201) {
-      navigate('/login')
+    //Send user's data to register in databases using axios post method:
+    try {
+      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/register`, newUser);
+      if (response.status == 201) {
+        // console.log(response.data)
+        const data = response.data;
+        localStorage.setItem('token', data.token);
+        setUser(data.user)
+        alert('User Registration successful!');
+        navigate('/login')
+      }
+    } catch (error) {
+      if (error.response) {
+        if (error.response.status === 400) {
+          alert('Please fill in all required fields.');
+        } else if (error.response.status === 409) {
+          alert('Email already exists. Try another.');
+        } else {
+          alert('An unexpected error occurred. Try again later.');
+        }
+      } else {
+        alert('Network error. Please check your connection.');
+      }
     }
     setFirstname('');
     setLastname('');

@@ -20,7 +20,7 @@ module.exports.registerUser = async (req, res, next) => {
     //Checking if the any user is already loggedin with this email:
     const isUserAlreadyExist = await userModel.findOne({ email });
     if (isUserAlreadyExist) {
-        return res.status(400).json({ message: 'User already exist' })
+        return res.status(409).json({ message: 'User already exist' })
     }
 
     //converting the password into hashPassword:
@@ -38,7 +38,7 @@ module.exports.registerUser = async (req, res, next) => {
     //generating a token using user's id: 
     const token = await user.generateAuthToken();
     console.log(token)
-    res.status(200).json({ token, user });
+    res.status(201).json({ token, user });
 }
 
 // this controller function will login the user using email and password:

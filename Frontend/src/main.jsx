@@ -3,15 +3,15 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
-import UserContext from './Context/userContext'
+import MainContext from './Context/MainContext.jsx'
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <UserContext>
+    <MainContext>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </UserContext>
+    </MainContext>
   </StrictMode>
 )

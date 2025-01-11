@@ -1,15 +1,46 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { UserDataContext } from '../Context/MainContext'
+import axios from 'axios'
 
 const UserLogin = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [UserData, setUserData] = useState({})
 
+  const navigate = useNavigate();
+  const { user, setUser } = useContext(UserDataContext);
+
   //It will submit the form and set the email and password to the UserData state:
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    setUserData({ email: email, password: password })
+    const userData = { email: email, password: password }
+    try {
+      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/login`, userData);
+      // Success Response Handling
+      if (response.status === 200) {
+        const data = response.data;
+        setUser(data.user)
+        console.log('Login successful!');
+        console.log('Token:', response.data.token);
+        localStorage.setItem('token', response.data.token); // Store JWT token
+        alert('Login successful!');
+        navigate('/home')
+      }
+    } catch (error) {
+      // Error Response Handling
+      if (error.response) {
+        if (error.response.status === 404) {
+          alert('User not found. Please register first.');
+        } else if (error.response.status === 401) {
+          alert('Invalid credentials. Please try again.');
+        } else {
+          alert('An unexpected error occurred. Please try again later.');
+        }
+      } else {
+        alert('Network error. Please check your connection.');
+      }
+    }
     setEmail('')
     setPassword('')
   }

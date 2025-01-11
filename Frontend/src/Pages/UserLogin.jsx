@@ -34,7 +34,7 @@ const UserLogin = () => {
           <button className='py-2 px-4 bg-[#111] text-white mb-6 text-lg font-semibold w-full rounded-lg'>Login</button>
         </form>
         <p className='text-center'>Don't have an account?
-          <Link to="/signup" className='text-[#111] font-semibold underline'> Sign up</Link>
+          <Link to="/signup" className='text-[#111] font-semibold underline'> Create new account</Link>
         </p>
       </div>
       <div className='w-full'>

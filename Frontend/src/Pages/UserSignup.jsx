@@ -1,26 +1,37 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
-
+import axios from 'axios';
+import React, { useState, useContext } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
+import {ContextUser} from '../Context/ContextUser'
 const UserSignup = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [firstname, setFirstname] = useState('')
-  const [lastName, setlastName] = useState('')
+  const [lastname, setLastname] = useState('')
   const [userData, setUserData] = useState({})
 
+  const navigate = useNavigate();
+const {user,setUser}=useContext(ContextUser);
+console.log(user)
   // Function to handle form submission of signup form:
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    setUserData({
-      fullName: {
+    const newUser = {
+      fullname: {
         firstname: firstname,
-        lastName: lastName
+        lastnme: lastname
       },
       email: email,
       password: password,
-    })
+    }
+    console.log(newUser);
+
+    const response = await axios.post(`${import.meta.env.VITE_BASE_URL / users / register}`, newUser);
+    console.log(response);
+    if (response.status == 201) {
+      navigate('/login')
+    }
     setFirstname('');
-    setlastName('');
+    setLastname('');
     setEmail('');
     setPassword('');
   }
@@ -37,8 +48,8 @@ const UserSignup = () => {
               <input type="text" className='bg-[#eeeeee]  rounded-lg px-4 py-2 border w-full text-lg placeholder:text-base' placeholder="First name" value={firstname} onChange={(e) => {
                 setFirstname(e.target.value);
               }} required />
-              <input type="text" className='bg-[#eeeeee]  rounded-lg px-4 py-2 border w-full text-lg placeholder:text-base' placeholder="Last name" value={lastName} onChange={(e) => {
-                setlastName(e.target.value);
+              <input type="text" className='bg-[#eeeeee]  rounded-lg px-4 py-2 border w-full text-lg placeholder:text-base' placeholder="Last name" value={lastname} onChange={(e) => {
+                setLastname(e.target.value);
               }} />
             </div>
             <h1 className='text-lg font-medium mb-2'>Enter your email:</h1>
@@ -51,7 +62,7 @@ const UserSignup = () => {
             <input className='border text-lg px-4 w-full py-2 bg-[#eeeeee] mb-6 rounded ' type="password" placeholder="Password" required value={password} onChange={(e) => {
               setPassword(e.target.value)
             }} />
-            <button className='py-2 px-4 bg-[#111] text-white mb-6 text-lg font-semibold w-full rounded-lg'>Login</button>
+            <button className='py-2 px-4 bg-[#111] text-white mb-6 text-lg font-semibold w-full rounded-lg'>Create account</button>
           </form>
           <p className='text-center'>Already have an account?
             <Link to="/login" className='text-[#111] font-semibold underline'>Login</Link>

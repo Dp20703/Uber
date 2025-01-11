@@ -6,7 +6,7 @@ import axios from 'axios'
 const UserLogin = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [UserData, setUserData] = useState({})
+  // const [UserData, setUserData] = useState({})
 
   const navigate = useNavigate();
   const { user, setUser } = useContext(UserDataContext);
@@ -23,7 +23,7 @@ const UserLogin = () => {
         setUser(data.user)
         console.log('Login successful!');
         console.log('Token:', response.data.token);
-        localStorage.setItem('token', response.data.token); // Store JWT token
+        localStorage.setItem('token', data.token); // Store JWT token
         alert('Login successful!');
         navigate('/home')
       }

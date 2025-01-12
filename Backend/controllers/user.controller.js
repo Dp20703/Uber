@@ -34,7 +34,7 @@ module.exports.registerUser = async (req, res, next) => {
         password: hashPassword
     });
     console.log(user)
-    
+
     //generating a token using user's id: 
     const token = await user.generateAuthToken();
     console.log(token)
@@ -82,8 +82,8 @@ module.exports.getUserProfile = async (req, res, next) => {
 
 //this controller function will logout the user:
 module.exports.logoutUser = async (req, res, next) => {
-    const token = req.cookies.token || req.headers?.authorization.split(' ')[1];
-    BlacklistTokenModel.create({ token: token });
     res.clearCookie('token');
-    return res.status(200).json({ message: "User logged out successfully" });
+    const token = req.cookies.token || req.headers?.authorization.split(' ')[1];
+   await BlacklistTokenModel.create({ token: token });
+    return res.status(200).json({ message: "User Logged out successfully" });
 }

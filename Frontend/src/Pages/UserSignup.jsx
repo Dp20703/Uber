@@ -31,7 +31,7 @@ const UserSignup = () => {
     //Send user's data to register in databases using axios post method:
     try {
       const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/register`, newUser);
-      if (response.status == 201) {
+      if (response.status === 201) {
         // console.log(response.data)
         const data = response.data;
         localStorage.setItem('token', data.token);

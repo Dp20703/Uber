@@ -3,7 +3,7 @@ import { UserDataContext } from '../Context/MainContext'
 import { useNavigate } from 'react-router-dom';
 
 const UserProtectWrapper = ({ children }) => {
-    const { user, setUser } = useContext(UserDataContext);
+    // const { user, setUser } = useContext(UserDataContext);
     const navigate = useNavigate();
 
     const token = localStorage.getItem('token');

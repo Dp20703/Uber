@@ -46,7 +46,7 @@ const CaptainSignup = () => {
         localStorage.setItem('token', data.token);
         console.log('Captain Registerd Succesfully!')
         alert('Captain Registerd Succesfully!')
-        navigate('/home')
+        navigate('/captain-home')
       }
 
     }
@@ -75,35 +75,35 @@ const CaptainSignup = () => {
   }
   return (
     <>
-      <div className='p-7 flex flex-col justify-between h-screen items-center '>
+      <div className='px-5 py-5 flex flex-col justify-between h-screen items-center '>
         <div>
           <img className='w-20 mb-2' src="https://www.svgrepo.com/show/505031/uber-driver.svg" alt="uber-logo" />
           <form onSubmit={(e) => {
             submitHandler(e)
           }}>
-            <h1 className='mb-2 font-medium text-lg '>Enter Captain's name:</h1>
-            <div className="mb-2 flex gap-4 ">
-              <input type="text" className='bg-[#eeeeee]  rounded-lg px-4 py-2 border w-full text-lg placeholder:text-base' placeholder="First name" value={firstname} onChange={(e) => {
+            <h1 className='mb-2 font-medium text-lg w-full'>Enter Captain's name:</h1>
+            <div className="mb-7 flex gap-4 ">
+              <input type="text" className='bg-[#eeeeee]  rounded-lg px-4 py-2 border w-1/2 text-lg placeholder:text-base' placeholder="First name" value={firstname} onChange={(e) => {
                 setFirstname(e.target.value);
               }} required />
-              <input type="text" className='bg-[#eeeeee]  rounded-lg px-4 py-2 border w-full text-lg placeholder:text-base' placeholder="Last name" value={lastname} onChange={(e) => {
+              <input type="text" className='bg-[#eeeeee]  rounded-lg px-4 py-2 border w-1/2 text-lg placeholder:text-base' placeholder="Last name" value={lastname} onChange={(e) => {
                 setLastName(e.target.value);
               }} />
             </div>
 
             <h1 className='text-lg font-medium mb-2'>Enter Captain's email:</h1>
-            <input type="text" className='bg-[#eeeeee] mb-2 rounded-lg px-4 py-2 border w-full text-lg placeholder:text-base' placeholder="example@gmail.com"
+            <input type="text" className='bg-[#eeeeee] mb-7 rounded-lg px-4 py-2 border w-full text-lg placeholder:text-base' placeholder="example@gmail.com"
               required value={email} onChange={(e) => {
                 setEmail(e.target.value);
               }} />
 
             <h1 className='font-medium text-lg mb-2'>Enter Captain's password:</h1>
-            <input className='border text-lg px-4 w-full py-2 bg-[#eeeeee] mb-2 rounded ' type="password" placeholder="Password" required value={password} onChange={(e) => {
+            <input className='border text-lg px-4 w-full py-2 bg-[#eeeeee] mb-7 rounded ' type="password" placeholder="Password" required value={password} onChange={(e) => {
               setPassword(e.target.value)
             }} />
 
             <h1 className='font-medium text-lg mb-2'>Enter Vehical's Details:</h1>
-            <div className='flex gap-4 mb-2 '>
+            <div className='flex gap-4 mb-7 '>
               {/* <h1 className='font-medium text-lg mb-2'>Enter vehical's Color:</h1> */}
               <input type="text" className='bg-[#eeeeee]  rounded-lg px-4 py-2 border w-1/2 text-lg placeholder:text-base' placeholder="Vehical Color" required value={vehicalColor} onChange={(e) => {
                 setVehicalColor(e.target.value);
@@ -115,7 +115,7 @@ const CaptainSignup = () => {
               }} />
             </div>
 
-            < div className="flex  gap-4 mb-4">
+            < div className="flex  gap-4 mb-7">
               {/* <h1 className='font-medium text-lg mb-2'>Enter Vehical's Capacity:</h1> */}
               <input type="number" className='bg-[#eeeeee]  rounded-lg px-4 py-2 border w-1/2 text-lg placeholder:text-base' placeholder="Vehical Capacity" required value={vehicalCapacity} onChange={(e) => {
                 setVehicalCapacity(e.target.value);
@@ -133,15 +133,15 @@ const CaptainSignup = () => {
             </div>
 
 
-            <button className='py-2 px-4 bg-[#111] text-white  text-lg font-semibold w-full rounded-lg mb-2'>Create an account</button>
+            <button className='py-2 px-4 bg-[#111] text-white  text-lg font-semibold w-full rounded-lg mb-3'>Create an account</button>
           </form >
 
-          <p className='text-center mb-2'>Already have an account?
-            <Link to="/captain-login" className='text-[#111] font-semibold underline'>Login</Link>
+          <p className='text-center'>Already have an account?
+            <Link to="/captain-login" className='text-blue-600 font-semibold underline'>Login</Link>
           </p>
         </div >
-        <div className='w-full'>
-          <p className='text-[10px] leading-tight'>This site is protected by reCAPTCHA and the <span className='underline font-bold' > Google Policy </span>and <span className='underline font-bold'>Terms of Service</span> apply.</p>
+        <div>
+          <p className='text-[10px] mt-6 leading-tight'>This site is protected by reCAPTCHA and the <span className='underline font-bold' > Google Policy </span>and <span className='underline font-bold'>Terms of Service</span> apply.</p>
         </div>
       </div >
     </>

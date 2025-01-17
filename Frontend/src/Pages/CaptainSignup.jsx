@@ -137,7 +137,7 @@ const CaptainSignup = () => {
           </form >
 
           <p className='text-center'>Already have an account?
-            <Link to="/captain-login" className='text-blue-600 font-semibold underline'>Login</Link>
+            <Link to="/captain-login" className='text-[#111] font-semibold underline '>Login</Link>
           </p>
         </div >
         <div>

@@ -91,10 +91,8 @@ module.exports.getCaptainProfile = async (req, res, next) => {
 // this controller function will logout the captain:
 module.exports.logoutCaptain = async (req, res, next) => {
     console.log("captain logout route");
-    const token = req.cookies.token || req.header.authorization?.split(' ')[1];
-    console.log(req.cookies.token);
-    console.log(req.header.authorization);
+    const token = req.cookies.token || req.headers?.authorization.split(' ')[1];
     await BlacklistTokenModel.create({ token })
     res.clearCookie('token');
-    res.status(201).json({ message: 'Captain logged out successfully' });
+    res.status(200).json({ message: 'Captain logged out successfully' });
 }

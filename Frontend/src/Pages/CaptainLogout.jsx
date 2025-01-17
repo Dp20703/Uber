@@ -2,13 +2,13 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const UserLogout = () => {
+const CaptainLogout = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   console.log(token);
 
   axios
-    .get(`${import.meta.env.VITE_BASE_URL}/users/logout`, {
+    .get(`${import.meta.env.VITE_BASE_URL}/captains/logout`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -16,9 +16,9 @@ const UserLogout = () => {
     .then((response) => {
       if (response.status === 200) {
         localStorage.removeItem("token");
-        alert("User Logged out Successfully");
-        console.log("User Logged out Successfully");
-        navigate("/login");
+        alert("Captain Logged out Successfully");
+        console.log("Captain Logged out Successfully");
+        navigate("/Captain-login");
       }
     })
     .catch((error) => {
@@ -28,7 +28,7 @@ const UserLogout = () => {
           localStorage.removeItem("token");
           alert("Session expired, please login again.");
           console.log("Session expired");
-          navigate("/login");
+          navigate("/captain-login");
         } else {
           alert(
             `Error: ${error.response.data.message || "Something went wrong!"}`
@@ -46,7 +46,7 @@ const UserLogout = () => {
       }
     });
 
-  return <div>UserLogout</div>;
+  return <div>CaptainLogout</div>;
 };
 
-export default UserLogout;
+export default CaptainLogout;

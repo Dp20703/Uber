@@ -44,10 +44,10 @@ module.exports.getDistanceTime = async (origin, destination) => {
     }
 }
 
-// Function to get suggestions for a given address
-module.exports.getSuggestions = async (address) => {
+// Function to get suggestions for a given input
+module.exports.getSuggestions = async (input) => {
     const apiKey = process.env.GOOGLE_MAP_KEY;
-    const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${encodeURIComponent(address)}&key=${apiKey}`;
+    const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${encodeURIComponent(input)}&key=${apiKey}`;
     try {
         const response = await axios.get(url);
         if (response.data.status === 'OK') {

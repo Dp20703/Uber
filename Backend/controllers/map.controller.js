@@ -61,11 +61,12 @@ module.exports.getSuggestions = async (req, res, next) => {
     }
 
     // Get the address from the request query
-    const { address } = req.query;
+    const { input } = req.query;
 
     try {
         // Call the map service to get suggestions for the given address
-        const suggestions = await mapService.getSuggestions(address);
+        const suggestions = await mapService.getSuggestions(input);
+
         // Return the suggestions with a 200 status code
         res.status(200).json(suggestions);
     } catch (error) {

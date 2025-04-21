@@ -42,6 +42,8 @@ async function getFare(pickup, destination) {
 
 }
 
+module.exports.getFare = getFare;
+
 // Function to generate OTP
 function getOtp(num) {
     function generateOtp(num) {

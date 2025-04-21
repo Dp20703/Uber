@@ -36,7 +36,7 @@ const VehicalPanel = (props) => {
             Affordable, compact rides
           </p>
         </div>
-        <h2 className="text-lg font-semibold">₹193.20</h2>
+        <h2 className="text-lg font-semibold">₹{props.fare.car}</h2>
       </div>
       <div
         onClick={() => {
@@ -61,7 +61,7 @@ const VehicalPanel = (props) => {
             Affordable, motorcycle rides
           </p>
         </div>
-        <h2 className="text-lg font-semibold">₹65.17</h2>
+        <h2 className="text-lg font-semibold">₹{props.fare.motorcycle}</h2>
       </div>
       <div
         onClick={() => {
@@ -86,7 +86,7 @@ const VehicalPanel = (props) => {
             Affordable, auto rides
           </p>
         </div>
-        <h2 className="text-lg font-semibold">₹118.21</h2>
+        <h2 className="text-lg font-semibold">₹{props.fare.auto}</h2>
       </div>
     </div>
   );

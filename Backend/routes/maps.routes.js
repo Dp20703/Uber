@@ -11,6 +11,6 @@ router.get('/get-coordinates', query('address').isLength({ min: 3 }), authMiddle
 router.get('/get-distance-time', query('origin').isLength({ min: 3 }), query('destination').isLength({ min: 3 }), authMiddleware.authUser, mapController.getDistanceTime);
 
 // /maps/get-suggestions
-router.get('/get-suggestions', query('address').isLength({ min: 3 }), authMiddleware.authUser, mapController.getSuggestions);
+router.get('/get-suggestions', query('input').isLength({ min: 3 }), authMiddleware.authUser, mapController.getSuggestions);
 
 module.exports = router;

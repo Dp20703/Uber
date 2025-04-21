@@ -9,7 +9,7 @@ const CaptainProtectWrapper = ({ children }) => {
   const { captain, setCaptain } = useContext(CaptainDataContext);
 
   const token = localStorage.getItem("token");
-  console.log(token);
+  // console.log(token);
 
   useEffect(() => {
     if (!token) {

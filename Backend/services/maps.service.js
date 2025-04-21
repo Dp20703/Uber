@@ -43,3 +43,21 @@ module.exports.getDistanceTime = async (origin, destination) => {
         throw error;
     }
 }
+
+// Function to get suggestions for a given address
+module.exports.getSuggestions = async (address) => {
+    const apiKey = process.env.GOOGLE_MAP_KEY;
+    const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${encodeURIComponent(address)}&key=${apiKey}`;
+    try {
+        const response = await axios.get(url);
+        if (response.data.status === 'OK') {
+            return response.data.predictions;
+        }
+        else {
+            throw new Error('Unable to fetch suggestions');
+        }
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+}

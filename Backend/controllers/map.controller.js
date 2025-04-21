@@ -50,4 +50,27 @@ module.exports.getDistanceTime = async (req, res, next) => {
     }
 }
 
+// Controller function to get suggestions for a given address
+module.exports.getSuggestions = async (req, res, next) => {
+    // Check if there are any errors in the request
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        // If there are errors, return a 400 status code with the errors
+        return res.status(400).json({ errors: errors.array() });
+    }
+
+    // Get the address from the request query
+    const { address } = req.query;
+
+    try {
+        // Call the map service to get suggestions for the given address
+        const suggestions = await mapService.getSuggestions(address);
+        // Return the suggestions with a 200 status code
+        res.status(200).json(suggestions);
+    } catch (error) {
+        // If there is an error, return a 500 status code with an error message
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+}
 

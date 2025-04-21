@@ -291,7 +291,8 @@ const Home = () => {
         className="fixed z-10  w-full px-3 py-10 bottom-0 bg-white pt-14 translate-y-full"
       >
         <VehicalPanel
-        fare={fare}
+          fare={fare}
+          selectVehical={setVehicalType}
           setVehicalPanel={setVehicalPanel}
           setConfirmRidePanel={setConfirmRidePanel}
         />
@@ -304,6 +305,10 @@ const Home = () => {
       >
         <ConfirmRide
           createRide={createRide}
+          pickup={pickup}
+          destination={destination}
+          vehicalType={vehicalType}
+          fare={fare}
           setVehicalFound={setVehicalFound}
           setConfirmRidePanel={setConfirmRidePanel}
           setVehicalPanel={setVehicalPanel}
@@ -316,7 +321,13 @@ const Home = () => {
       >
         <LookingForDriver
           createRide={createRide}
+          pickup={pickup}
+          destination={destination}
+          vehicalType={vehicalType}
+          fare={fare}
           setVehicalFound={setVehicalFound}
+          setConfirmRidePanel={setConfirmRidePanel}
+          setVehicalPanel={setVehicalPanel}
         />
       </div>
       {/* WaitingForDriver */}

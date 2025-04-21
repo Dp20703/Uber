@@ -1,6 +1,7 @@
 import React from "react";
 
 const ConfirmRide = (props) => {
+  console.log("ConfirmRide props:", props);
   return (
     <div>
       <h5
@@ -25,21 +26,21 @@ const ConfirmRide = (props) => {
             <div>
               <h4 className="text-xl font-medium">562/11-A</h4>
               <p className="text-base text-gray-600 -mt-1">
-                Kankariya Talab, Ahmedabad
+                {props.pickup}
               </p>
             </div>
           </div>
           <div className="flex items-center gap-5 p-3 border-b-2 ">
             <i className="ri-square-fill text-lg" />
             <div>
-              <h4 className="text-xl font-medium">Oppsite Lijjat House</h4>
-              <p className="text-base text-gray-600 -mt-1">Ahmedabad</p>
+              <h4 className="text-xl font-medium">562/11-A</h4>
+              <p className="text-base text-gray-600 -mt-1">{props.destination}</p>
             </div>
           </div>
           <div className="flex items-center gap-5 p-3 border-b-2 ">
             <i className="ri-money-rupee-circle-fill text-xl" />
             <div>
-              <h4 className="text-xl font-medium">₹195</h4>
+              <h4 className="text-xl font-medium">₹{props.fare[props.vehicalType]}</h4>
               <p className="text-base text-gray-600 -mt-1">Cash Cash</p>
             </div>
           </div>
@@ -49,6 +50,7 @@ const ConfirmRide = (props) => {
             props.setConfirmRidePanel(false);
             props.setVehicalFound(true);
             props.setVehicalPanel(false);
+            props.createRide();
           }}
           className="mt-5 w-full bg-black p-2 rounded-lg text-white font-semibold"
         >

@@ -16,6 +16,7 @@ const VehicalPanel = (props) => {
       <div
         onClick={() => {
           props.setConfirmRidePanel(true);
+          props.selectVehical("car");
         }}
         className="flex justify-between items-center  w-full px-3 py-8  border-2 rounded-xl active:border-black mb-2  bg-gray-100"
       >
@@ -41,6 +42,7 @@ const VehicalPanel = (props) => {
       <div
         onClick={() => {
           props.setConfirmRidePanel(true);
+          props.selectVehical("motorcycle");
         }}
         className="flex justify-between items-center  w-full px-3 py-6 bg-gray-100  border-2 rounded-xl active:border-black mb-2 "
       >
@@ -66,6 +68,7 @@ const VehicalPanel = (props) => {
       <div
         onClick={() => {
           props.setConfirmRidePanel(true);
+          props.selectVehical("auto");
         }}
         className="flex justify-between items-center bg-gray-100  w-full px-3 py-6  border-2 rounded-xl active:border-black mb-2 "
       >

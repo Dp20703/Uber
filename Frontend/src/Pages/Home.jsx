@@ -53,6 +53,11 @@ const Home = () => {
     navigate("/riding", { state: { ride } }); // Updated navigate to include ride data
   });
 
+  socket.on('ride-confirmed', ride => {
+    setVehicalFound(false)
+    setWaitingForDriver(true)
+    setRide(ride)
+})
   // Function to handle pickup change
   const handlePickupChange = async (e) => {
     setPickup(e.target.value);
@@ -342,6 +347,7 @@ const Home = () => {
           setWaitingForDriver={setWaitingForDriver}
           setVehicalFound={setVehicalFound}
           ride={ride}
+          waitingForDriver={waitingForDriver}
         />
       </div>
     </div>

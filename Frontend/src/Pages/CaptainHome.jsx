@@ -10,10 +10,11 @@ import { SocketContext } from "../Context/SocketContext";
 import { CaptainDataContext } from "../Context/CaptainContext";
 
 const CaptainHome = () => {
-  const [ridePopUpPanel, setRidePopUpPanel] = useState(true);
+  const [ridePopUpPanel, setRidePopUpPanel] = useState(false);
   const ridePopUpPanelRef = useRef(null);
   const [confirmRidePopUpPanel, setConfirmRidePopUpPanel] = useState(false);
   const confirmRidePopUpPanelRef = useRef(null);
+  const [ride, setRide] = useState(null);
 
   const { socket } = useContext(SocketContext);
   const { captain } = useContext(CaptainDataContext);
@@ -63,8 +64,8 @@ const CaptainHome = () => {
       }
     );
 
-    setRidePopupPanel(false);
-    setConfirmRidePopupPanel(true);
+    setRidePopUpPanel(false);
+    setConfirmRidePopUpPanel(true);
   }
   useGSAP(() => {
     if (ridePopUpPanel) {
@@ -134,7 +135,7 @@ const CaptainHome = () => {
           ride={ride}
           setConfirmRidePopUpPanel={setConfirmRidePopUpPanel}
           setRidePopUpPanel={setRidePopUpPanel}
-          waitingForDriver={waitingForDriver}
+          // waitingForDriver={waitingForDriver}
         />
       </div>
     </div>

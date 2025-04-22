@@ -1,6 +1,7 @@
 import React from "react";
 
 const RidePopUp = (props) => {
+  console.log("RidePop Props:", props);
   return (
     <div>
       <h5

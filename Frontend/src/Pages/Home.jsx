@@ -213,11 +213,11 @@ const Home = () => {
         src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Uber_logo_2018.png"
         alt="uber-logo"
       /> */}
-      <LiveTracking/>
+      <LiveTracking />
       <div className="h-screen w-screen">
         <img
           className="h-full w-full object-cover"
-          src="https://miro.medium.com/v2/resize:fit:1400/0*gwMx05pqII5hbfmX.gif"
+          src="https://miro.medium.com/v2/resize:fit:1400/0*gwMrx05pqII5hbfmX.gif"
           alt="map"
         />
       </div>

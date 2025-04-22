@@ -1,5 +1,5 @@
 const axios = require("axios");
-
+const captainModel = require("../models/captain.model");
 // Function to get the coordinates of a given address
 module.exports.getAddressCoordinate = async (address) => {
     const apiKey = process.env.GOOGLE_MAP_KEY;

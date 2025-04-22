@@ -23,20 +23,6 @@ module.exports.getAddressCoordinate = async (address) => {
     }
 }
 
-// Function to get captains in the radius
-module.exports.getCaptainsInTheRadius = async (ltd, lng, radius) => {
-    // radius in km
-    console.log("Ltd:", ltd, "Lng:", lng, "Radius:", radius);
-    const captains = await captainModel.find({
-        location: {
-            $geoWithin: {
-                $centerSphere: [[ltd, lng], radius / 6371]
-            }
-        }
-    });
-    console.log("Captians: ", captains);
-    return captains;
-}
 // Function to get the distance and time between two addresses
 module.exports.getDistanceTime = async (origin, destination) => {
     const apiKey = process.env.GOOGLE_MAP_KEY;
@@ -75,4 +61,18 @@ module.exports.getSuggestions = async (input) => {
         console.log(error);
         throw error;
     }
+}
+
+// Function to get captains in the radius
+module.exports.getCaptainsInTheRadius = async (ltd, lng, radius) => {
+
+    // radius in km
+    const captains = await captainModel.find({
+        location: {
+            $geoWithin: {
+                $centerSphere: [[ltd, lng], radius / 6371]
+            }
+        }
+    });
+    return captains;
 }

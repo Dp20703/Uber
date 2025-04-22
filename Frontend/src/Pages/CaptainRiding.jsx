@@ -22,7 +22,8 @@ const CaptainRiding = () => {
   }, [finishRidePanel]);
 
   return (
-    <div className="h-screen w-screen">
+    <div className="h-screen relative flex flex-col justify-end">
+      {" "}
       <div className="fixed flex items-center  justify-between w-screen top-0 p-3">
         <img
           className="w-16"
@@ -36,13 +37,13 @@ const CaptainRiding = () => {
           <i className="ri-logout-box-r-line text-lg font-medium" />
         </Link>
       </div>
-      <div className="h-4/5 w-full ">
+      {/* <div className="h-4/5 w-full ">
         <img
           className="h-full w-full object-cover"
           src="https://miro.medium.com/v2/resize:fit:1400/0*gwMx05pqII5hbfmX.gif"
           alt="map"
         />
-      </div>
+      </div> */}
       <div
         onClick={() => {
           setFinishRidePanel(true);
@@ -64,12 +65,12 @@ const CaptainRiding = () => {
       </div>
       <div
         ref={finishRidePanelRef}
-        className="fixed z-10  w-full px-3 py-10 bottom-0 translate-y-full bg-white pt-14"
+        className="fixed z- [500] w-full px-3 py-10 bottom-0 translate-y-full bg-white pt-14"
       >
-        <FinishRiding
-          ride={rideData}
-          setFinishRidePanel={setFinishRidePanel}
-        />
+        <FinishRiding ride={rideData} setFinishRidePanel={setFinishRidePanel} />
+        <div className="h-screen fixed w-screen top-0 z-[-1]">
+          <LiveTracking />
+        </div>
       </div>
     </div>
   );

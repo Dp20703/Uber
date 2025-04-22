@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom"; // Added useLocation
 import { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import SocketProvider from "../Context/SocketContext";
+import LiveTracking from "../Components/LiveTracking";
 
 const Riding = () => {
   const location = useLocation();
@@ -15,11 +16,12 @@ const Riding = () => {
   });
   return (
     <div className="h-screen w-screen">
-      <img
+      {/* <img
         className="w-16 absolute top-5 left-5"
         src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Uber_logo_2018.png"
         alt="uber-logo"
-      />
+      /> */}
+      <LiveTracking/>
       <Link
         to="/home"
         className="fixed  top-2 right-2 w-10 h-10 flex justify-center items-center rounded-full bg-white "

@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { SocketContext } from "../Context/SocketContext";
 import { UserDataContext } from "../Context/MainContext";
+import LiveTracking from "../Components/LiveTracking";
 
 const Home = () => {
   const [pickup, setPickup] = useState("");
@@ -207,11 +208,12 @@ const Home = () => {
 
   return (
     <div className="h-screen relative overflow-hidden">
-      <img
+      {/* <img
         className="w-16 absolute top-5 left-5"
         src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Uber_logo_2018.png"
         alt="uber-logo"
-      />
+      /> */}
+      <LiveTracking/>
       <div className="h-screen w-screen">
         <img
           className="h-full w-full object-cover"

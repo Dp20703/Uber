@@ -2,13 +2,13 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom"; // Added useLocation
 import { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import SocketProvider from "../Context/SocketContext";
+import { SocketContext } from "../Context/SocketContext";
 import LiveTracking from "../Components/LiveTracking";
 
 const Riding = () => {
   const location = useLocation();
   const { ride } = location.state || {}; // Retrieve ride data
-  const { socket } = useContext(SocketProvider);
+  const { socket } = useContext(SocketContext);
   const navigate = useNavigate();
 
   socket.on("ride-ended", () => {
@@ -21,7 +21,7 @@ const Riding = () => {
         src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Uber_logo_2018.png"
         alt="uber-logo"
       /> */}
-      <LiveTracking/>
+      <LiveTracking />
       <Link
         to="/home"
         className="fixed  top-2 right-2 w-10 h-10 flex justify-center items-center rounded-full bg-white "
@@ -43,9 +43,11 @@ const Riding = () => {
             alt="uber-car"
           />
           <div className="text-right">
-            <h2 className="text-lg font-medium capitalize">{ride?.captain.fullname.firstname}</h2>
+            <h2 className="text-lg font-medium capitalize">
+              {ride?.captain.fullname.firstname}
+            </h2>
             <h4 className="text-xl font-semibold -mt-1 -mb-1">
-            {ride?.captain.vehical.plate}
+              {ride?.captain.vehical.plate}
             </h4>
             <p className="text-sm text-gray-600">Maruti Suzuki Alto</p>
           </div>
@@ -57,7 +59,9 @@ const Riding = () => {
               <i className="ri-square-fill text-lg" />
               <div>
                 <h4 className="text-xl font-medium">562/11-A</h4>
-                <p className="text-base text-gray-600 -mt-1">{ride?.destination}</p>
+                <p className="text-base text-gray-600 -mt-1">
+                  {ride?.destination}
+                </p>
               </div>
             </div>
             <div className="flex items-center gap-5 p-3 border-b-2 ">

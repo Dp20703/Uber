@@ -9,6 +9,7 @@ module.exports.getAddressCoordinate = async (address) => {
         const response = await axios.get(url);
         if (response.data.status === 'OK') {
             const location = response.data.results[0].geometry.location;
+            // console.log("Location :",location);
             return {
                 ltd: location.lat,
                 lng: location.lng
@@ -25,13 +26,15 @@ module.exports.getAddressCoordinate = async (address) => {
 // Function to get captains in the radius
 module.exports.getCaptainsInTheRadius = async (ltd, lng, radius) => {
     // radius in km
+    console.log("Ltd:", ltd, "Lng:", lng, "Radius:", radius);
     const captains = await captainModel.find({
         location: {
             $geoWithin: {
-                $centerSphere: [ [ ltd, lng ], radius / 6371 ]
+                $centerSphere: [[ltd, lng], radius / 6371]
             }
         }
     });
+    console.log("Captians: ", captains);
     return captains;
 }
 // Function to get the distance and time between two addresses

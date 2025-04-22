@@ -16,20 +16,21 @@ module.exports.createRide = async (req, res) => {
         res.status(201).json(ride);
 
         const pickupCoordinates = await mapService.getAddressCoordinate(pickup);
-
+        console.log("Pickup Coordinates:", pickupCoordinates)
         const captainsInRadius = await mapService.getCaptainsInTheRadius(pickupCoordinates.ltd, pickupCoordinates.lng, 2);
-
+        console.log("Captain Radius:", captainsInRadius)
         ride.otp = ""
 
         const rideWithUser = await rideModel.findOne({ _id: ride._id }).populate('user');
+        console.log("RidewithUser: ", rideWithUser)
 
         captainsInRadius.map(captain => {
-
+            console.log("Inside the socket of create ride controller: ", captain.socketId)
             sendMessageToSocketId(captain.socketId, {
                 event: 'new-ride',
                 data: rideWithUser
             })
-
+            console.log("Ride with user after socket emitted:", data, rideWithUser)
         })
 
     } catch (error) {
@@ -64,7 +65,7 @@ module.exports.startRide = async (req, res) => {
     const { rideId, otp } = req.query;
     try {
         const ride = await rideService.startRide({ rideId, otp, captain: req.captain });
-//   console.log(ride);
+        //   console.log(ride);
         sendMessageToSocketId(ride.user.socketId, {
             event: 'ride-started',
             data: ride

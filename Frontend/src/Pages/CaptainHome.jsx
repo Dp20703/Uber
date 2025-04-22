@@ -8,9 +8,11 @@ import ConfirmRidePopUp from "../Components/ConfirmRidePopUp";
 import { useEffect, useContext } from "react";
 import { SocketContext } from "../Context/SocketContext";
 import { CaptainDataContext } from "../Context/CaptainContext";
+import axios from "axios";
+
 
 const CaptainHome = () => {
-  const [ridePopUpPanel, setRidePopUpPanel] = useState(false);
+  const [ridePopUpPanel, setRidePopUpPanel] = useState(true);
   const ridePopUpPanelRef = useRef(null);
   const [confirmRidePopUpPanel, setConfirmRidePopUpPanel] = useState(false);
   const confirmRidePopUpPanelRef = useRef(null);
@@ -44,7 +46,7 @@ const CaptainHome = () => {
     // return () => clearInterval(locationInterval)
   }, []);
   socket.on("new-ride", (data) => {
-    console.log(data);
+    console.log("New Ride:", data);
     setRide(data);
     setRidePopUpPanel(true);
   });

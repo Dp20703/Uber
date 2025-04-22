@@ -9,7 +9,7 @@ const LocationSearchPanel = (props) => {
     } else if (activeField === "destination") {
       setDestination(suggestion);
     }
-    // setVehiclePanel(true)
+    // setVehicalPanel(true)
     // setPanelOpen(false)
     setVehicalFound(false);
   };

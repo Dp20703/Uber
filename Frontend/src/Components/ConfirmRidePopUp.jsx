@@ -25,7 +25,7 @@ const ConfirmRidePopUp = (props) => {
     if (response.status === 200) {
       props.setConfirmRidePopUpPanel(false);
       props.setRidePopUpPanel(false);
-      navigate("/captain-riding", { state: { ride: response.data } });
+      navigate("/captain-riding", { state: { ride: props.ride } });
     }
   };
   return (
@@ -60,7 +60,7 @@ const ConfirmRidePopUp = (props) => {
             <div>
               <h4 className="text-xl font-medium">562/11-A</h4>
               <p className="text-base text-gray-600 -mt-1">
-              {props.ride?.pickup}
+                {props.ride?.pickup}
               </p>
             </div>
           </div>
@@ -68,7 +68,9 @@ const ConfirmRidePopUp = (props) => {
             <i className="ri-square-fill text-lg" />
             <div>
               <h4 className="text-xl font-medium">562/11-A</h4>
-              <p className="text-base text-gray-600 -mt-1">{props.ride?.destination}</p>
+              <p className="text-base text-gray-600 -mt-1">
+                {props.ride?.destination}
+              </p>
             </div>
           </div>
           <div className="flex items-center gap-5 p-3 border-b-2 ">
@@ -80,9 +82,7 @@ const ConfirmRidePopUp = (props) => {
           </div>
         </div>
         <div className="w-full mt-6">
-          <form
-          onSubmit={submitHandler}
-          >
+          <form onSubmit={submitHandler}>
             <input
               onChange={(e) => {
                 setOtp(e.target.value);
@@ -92,7 +92,9 @@ const ConfirmRidePopUp = (props) => {
               type="number"
               placeholder="Enter OTP"
             />
-              <button className='w-full mt-5 text-lg flex justify-center bg-green-600 text-white font-semibold p-3 rounded-lg'>Confirm</button>
+            <button className="w-full mt-5 text-lg flex justify-center bg-green-600 text-white font-semibold p-3 rounded-lg">
+              Confirm
+            </button>
             <button
               onClick={() => {
                 props.setRidePopUpPanel(false);

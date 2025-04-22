@@ -135,7 +135,6 @@ const CaptainHome = () => {
           ride={ride}
           setConfirmRidePopUpPanel={setConfirmRidePopUpPanel}
           setRidePopUpPanel={setRidePopUpPanel}
-          // waitingForDriver={waitingForDriver}
         />
       </div>
     </div>

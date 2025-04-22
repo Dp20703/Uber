@@ -32,4 +32,12 @@ router.post('/confirm',
     body('rideId').isMongoId().withMessage('Invalid ride id'),
     rideController.confirmRide
 )
+
+// /rides/end
+router.post('/end-ride',
+    authmiddleware.authCaptain,
+    body('rideId').isMongoId().withMessage('Invalid ride id'),
+    rideController.endRide
+)
+
 module.exports = router;

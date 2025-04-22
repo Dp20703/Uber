@@ -281,6 +281,7 @@ const Home = () => {
             setPickup={setPickup}
             setDestination={setDestination}
             activeField={activeField}
+            setVehicalFound={setVehicalFound}
           />
         </div>
       </div>

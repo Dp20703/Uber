@@ -1,7 +1,7 @@
 import React from "react";
 
 const LocationSearchPanel = (props) => {
-  const { activeField, suggestions, setPickup, setDestination } = props;
+  const { activeField, suggestions, setPickup, setDestination,setVehicalFound } = props;
   const handleSuggestionClick = (suggestion) => {
     if (activeField === "pickup") {
       console.log("suggestion", suggestion);
@@ -11,6 +11,7 @@ const LocationSearchPanel = (props) => {
     }
     // setVehiclePanel(true)
     // setPanelOpen(false)
+    setVehicalFound(false);
   };
 
   return (

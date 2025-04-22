@@ -6,6 +6,7 @@ const VehicalPanel = (props) => {
       <h5
         onClick={() => {
           props.setVehicalPanel(false);
+          props.setVehicalFound(false);
         }}
         className="w-[93%] p-1 absolute text-center top-0"
       >

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import LocationSearchPanel from "../Components/LocationSearchPanel";
@@ -8,6 +8,8 @@ import LookingForDriver from "../Components/LookingForDriver";
 import WaitingForDriver from "../Components/WaitingForDriver";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { SocketContext } from "../Context/SocketContext";
+import { UserDataContext } from "../Context/MainContext";
 
 const Home = () => {
   const [pickup, setPickup] = useState("");
@@ -32,25 +34,24 @@ const Home = () => {
 
   const navigate = useNavigate();
 
-  // const { socket } = useContext(SocketContext)
-  // const { user } = useContext(UserDataContext)
+  const { socket } = useContext(SocketContext);
+  const { user } = useContext(UserDataContext);
 
-  // useEffect(() => {
-  //     socket.emit("join", { userType: "user", userId: user._id })
-  // }, [ user ])
+  useEffect(() => {
+    socket.emit("join", { userType: "user", userId: user._id });
+  }, [user]);
 
-  // socket.on('ride-confirmed', ride => {
+  socket.on("ride-confirmed", (ride) => {
+    setVehicalFound(false);
+    setWaitingForDriver(true);
+    setRide(ride);
+  });
 
-  //     setVehicleFound(false)
-  //     setWaitingForDriver(true)
-  //     setRide(ride)
-  // })
-
-  // socket.on('ride-started', ride => {
-  //     console.log("ride")
-  //     setWaitingForDriver(false)
-  //     navigate('/riding', { state: { ride } }) // Updated navigate to include ride data
-  // })
+  socket.on("ride-started", (ride) => {
+    console.log("ride");
+    setWaitingForDriver(false);
+    navigate("/riding", { state: { ride } }); // Updated navigate to include ride data
+  });
 
   // Function to handle pickup change
   const handlePickupChange = async (e) => {
@@ -215,7 +216,7 @@ const Home = () => {
       </div>
       {/*Search trip panel */}
       <div className=" top-0 h-screen w-full flex flex-col absolute justify-end">
-        <div className="bg-white h-[35%] relative p-7">
+        <div className="bg-white h-[30%] relative p-7">
           <h5
             ref={panelCloseRef}
             onClick={() => {
@@ -296,6 +297,7 @@ const Home = () => {
           selectVehical={setVehicalType}
           setVehicalPanel={setVehicalPanel}
           setConfirmRidePanel={setConfirmRidePanel}
+          setVehicalFound={setVehicalFound}
         />
       </div>
 
@@ -336,7 +338,11 @@ const Home = () => {
         ref={waitingForDriverRef}
         className="fixed z-10  w-full px-3 py-10 bottom-0 bg-white pt-14 translate-y-full"
       >
-        <WaitingForDriver setWaitingForDriver={setWaitingForDriver} />
+        <WaitingForDriver
+          setWaitingForDriver={setWaitingForDriver}
+          setVehicalFound={setVehicalFound}
+          ride={ride}
+        />
       </div>
     </div>
   );

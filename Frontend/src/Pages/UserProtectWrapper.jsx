@@ -25,7 +25,7 @@ const UserProtectWrapper = ({ children }) => {
       .then((response) => {
         if (response.status === 200) {
           setIsLoading(false);
-          setUser(response.data.user);
+          setUser(response.data);
           //   alert("User profile got successfully");
           console.log("User profile got successfully");
         }

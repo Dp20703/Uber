@@ -17,4 +17,13 @@ router.get('/get-fare',
     authmiddleware.authUser, query('pickup').isString().isLength({ min: 3 }).withMessage("Invalid pickup address"),
     query('destination').isString().isLength({ min: 3 }).withMessage("Invalid destination address"),
     rideController.getFare);
+
+// /rides/start-ride
+router.get('/start-ride',
+    authmiddleware.authCaptain,
+    query('rideId').isMongoId().withMessage('Invalid ride id'),
+    query('otp').isString().isLength({ min: 6, max: 6 }).withMessage('Invalid OTP'),
+    rideController.startRide
+)
+
 module.exports = router;

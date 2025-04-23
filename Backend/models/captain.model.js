@@ -36,7 +36,7 @@ const captainSchema = new mongoose.Schema({
         default: 'inactive',
     },
 
-    vehicle: {
+    vehical: {
         color: {
             type: String,
             required: true,
@@ -52,7 +52,7 @@ const captainSchema = new mongoose.Schema({
             required: true,
             min: [1, 'Capacity must be at least 1'],
         },
-        vehicleType: {
+        vehicalType: {
             type: String,
             required: true,
             enum: ['car', 'motorcycle', 'auto'],

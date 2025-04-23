@@ -5,7 +5,7 @@ const { validationResult } = require('express-validator');
 
 //this controller function will register the captain using required fields:
 module.exports.registerCaptain = async (req, res, next) => {
-
+    console.log("Register route")
     //check errors in the data using express-validator:
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -45,7 +45,7 @@ module.exports.registerCaptain = async (req, res, next) => {
 
 //this controller function will login the captain using required fields:
 module.exports.loginCaptain = async (req, res, next) => {
-
+    console.log("Login Captain route")
     //check errors in the data using express-validator:
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -74,6 +74,7 @@ module.exports.loginCaptain = async (req, res, next) => {
 
     //Storing the token in the cookie:
     res.cookie('token', token)
+    // console.log("Cookie  token:", token)
 
     //sending the token and captain data in response: 
     res.status(200).json({ token, captain })

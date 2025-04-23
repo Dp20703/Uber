@@ -31,7 +31,7 @@ const userSchema = new mongoose.Schema({
 })
 //for generating authetication token usingn jwt:
 userSchema.methods.generateAuthToken = function () {
-    const token = jwt.sign({ _id: this._id }, process.env.JWT_SECRECT, { expiresIn: '24h' });
+    const token = jwt.sign({ _id: this._id }, process.env.JWT_SECRET, { expiresIn: '24h' });
     return token;
 }
 //for comparing the hashpassword with password using bcrypt;

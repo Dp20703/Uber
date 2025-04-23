@@ -26,7 +26,7 @@ module.exports.authUser = async (req, res, next) => {
     }
     try {
         //if token is found it will decode the token using jwt.verify:
-        const decoded = jwt.verify(token, process.env.JWT_SECRECT);
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
         // console.log(decoded)
 
         //it will find user using the decoded id:
@@ -49,8 +49,6 @@ module.exports.authCaptain = async (req, res, next) => {
 
     //get the token from the cookies or headers:
     const token = req.cookies.token || req.headers.authorization?.split(' ')[1];
-    console.log(req.headers.authorization)
-    console.log(req.cookies.token)
 
     //check if token is blacklisted:
     const isTokenBlacklisted = await BlacklistTokenModel.findOne({ token: token });
@@ -67,8 +65,8 @@ module.exports.authCaptain = async (req, res, next) => {
     }
     try {
         //if token is found it will decode the token using jwt.verify:
-        const decoded = jwt.verify(token, process.env.JWT_SECRECT);
-        // console.log(decoded)
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        console.log(decoded)
 
         //it will find captain using the decoded id:
         const captain = await captainModel.findById(decoded._id);
@@ -78,9 +76,11 @@ module.exports.authCaptain = async (req, res, next) => {
             return res.status(401).json({ message: "Unauthorized" })
         }
         req.captain = captain;
+        console.log("calling the next", req.captain)
         return next();
 
     } catch (error) {
+        console.log("error in auth middleware:", error)
         return res.status(401).json({ message: "Unauthorized" })
     }
 

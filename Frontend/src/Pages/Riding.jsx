@@ -16,26 +16,22 @@ const Riding = () => {
   });
   return (
     <div className="h-screen w-screen">
-      {/* <img
-        className="w-16 absolute top-5 left-5"
-        src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Uber_logo_2018.png"
-        alt="uber-logo"
-      /> */}
-      <LiveTracking />
-      <Link
-        to="/home"
-        className="fixed  top-2 right-2 w-10 h-10 flex justify-center items-center rounded-full bg-white "
-      >
-        <i className="ri-home-5-line text-lg font-medium" />
-      </Link>
-      <div className="h-1/2 w-full ">
+      <div className="h-2/4 w-full">
         <img
-          className="h-full w-full object-cover"
-          src="https://miro.medium.com/v2/resize:fit:1400/0*gwMx05pqII5hbfmX.gif"
-          alt="map"
+          className="w-16 absolute top-5 left-5 z-50"
+          src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Uber_logo_2018.png"
+          alt="uber-logo"
         />
+        <Link
+          to="/home"
+          className="fixed z-50 top-2 right-2 w-10 h-10 flex justify-center items-center rounded-full bg-white "
+        >
+          <i className="ri-home-5-line text-lg font-medium" />
+        </Link>
+        <LiveTracking />
       </div>
-      <div className="h-1/2 w-full p-4">
+
+      <div className="h-1/4 w-full p-4">
         <div className="flex items-center justify-between">
           <img
             className="h-24"

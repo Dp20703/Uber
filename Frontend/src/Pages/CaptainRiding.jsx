@@ -3,6 +3,7 @@ import gsap from "gsap";
 import React, { useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import FinishRiding from "./FinishRiding";
+import LiveTracking from "../Components/LiveTracking";
 
 const CaptainRiding = () => {
   const [finishRidePanel, setFinishRidePanel] = useState(false);
@@ -68,9 +69,9 @@ const CaptainRiding = () => {
         className="fixed z- [500] w-full px-3 py-10 bottom-0 translate-y-full bg-white pt-14"
       >
         <FinishRiding ride={rideData} setFinishRidePanel={setFinishRidePanel} />
-        <div className="h-screen fixed w-screen top-0 z-[-1]">
-          <LiveTracking />
-        </div>
+      </div>
+      <div className="h-screen fixed w-screen top-0 z-[-1]">
+        <LiveTracking />
       </div>
     </div>
   );

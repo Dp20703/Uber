@@ -46,6 +46,7 @@ const CaptainHome = () => {
   }, []);
 
   socket.on("new-ride", (data) => {
+    console.log("Inside New Ride in Captain Home");
     console.log("New Ride:", data);
     setRide(data);
     setRidePopUpPanel(true);
@@ -53,6 +54,7 @@ const CaptainHome = () => {
 
   // Function to confirm a ride
   async function confirmRide() {
+    console.log("Inside Confirm Ride in Captain Home");
     const response = await axios.post(
       `${import.meta.env.VITE_BASE_URL}/rides/confirm`,
       {

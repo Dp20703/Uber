@@ -24,6 +24,7 @@ const Home = () => {
   const vehicalFoundRef = useRef(null);
   const confirmRidePanelRef = useRef(null);
   const vehicalPanelRef = useRef(null);
+  const findTripPanelRef = useRef(null);
   const panelRef = useRef(null);
   const panelCloseRef = useRef(null);
   const [pickupSuggestions, setPickupSuggestions] = useState([]);
@@ -140,18 +141,30 @@ const Home = () => {
 
   useGSAP(() => {
     if (panelOpen) {
+      //findTrip panel:
+      gsap.to(findTripPanelRef.current, {
+        zIndex: 999,
+      });
+      //Location panel:
       gsap.to(panelRef.current, {
         height: "70%",
         padding: 24,
       });
+      //panel close icon:
       gsap.to(panelCloseRef.current, {
         opacity: 1,
       });
     } else {
+      //findTrip panel:
+      gsap.to(findTripPanelRef.current, {
+        zIndex: 1,
+      });
+      //Location panel:
       gsap.to(panelRef.current, {
         height: "0%",
         padding: 0,
       });
+      //panel close icon:
       gsap.to(panelCloseRef.current, {
         opacity: 0,
       });
@@ -224,7 +237,7 @@ const Home = () => {
       </div>
       {/*Search trip panel */}
       <div className=" top-0 h-screen w-full flex flex-col absolute justify-end">
-        <div className="bg-white h-[30%] relative p-7">
+        <div ref={findTripPanelRef} className="bg-white h-[35%] relative p-7">
           <h5
             ref={panelCloseRef}
             onClick={() => {
@@ -306,6 +319,7 @@ const Home = () => {
           setVehicalPanel={setVehicalPanel}
           setConfirmRidePanel={setConfirmRidePanel}
           setVehicalFound={setVehicalFound}
+          setPanelOpen={setPanelOpen}
         />
       </div>
 

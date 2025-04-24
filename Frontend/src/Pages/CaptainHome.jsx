@@ -104,7 +104,7 @@ const CaptainHome = () => {
           alt="uber-logo"
         />
         <Link
-          to="/captain-login"
+          to="/captain/logout"
           className="w-10 h-10 flex justify-center items-center rounded-full bg-white "
         >
           <i className="ri-logout-box-r-line text-lg font-medium" />

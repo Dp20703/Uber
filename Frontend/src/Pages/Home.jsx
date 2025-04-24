@@ -6,7 +6,7 @@ import VehicalPanel from "../Components/VehicalPanel";
 import ConfirmRide from "../Context/ConfirmRide";
 import LookingForDriver from "../Components/LookingForDriver";
 import WaitingForDriver from "../Components/WaitingForDriver";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { SocketContext } from "../Context/SocketContext";
 import { UserDataContext } from "../Context/MainContext";
@@ -208,18 +208,19 @@ const Home = () => {
 
   return (
     <div className="h-screen relative overflow-hidden">
-      {/* <img
-        className="w-16 absolute top-5 left-5"
-        src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Uber_logo_2018.png"
-        alt="uber-logo"
-      /> */}
-      <LiveTracking />
-      <div className="h-screen w-screen">
+      <div className="h-full w-full">
         <img
-          className="h-full w-full object-cover"
-          src="https://miro.medium.com/v2/resize:fit:1400/0*gwMrx05pqII5hbfmX.gif"
-          alt="map"
+          className="w-16  absolute top-5 left-5 z-50"
+          src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Uber_logo_2018.png"
+          alt="uber-logo"
         />
+        <LiveTracking />
+        <Link
+          to="/user/logout"
+          className=" top-2 right-2 fixed  z-[999]  h-14 z-1 flex justify-end  items-center rounded-full bg-white "
+        >
+          <i className="ri-logout-box-r-line text-lg font-medium my-3 mx-5 z-1" />
+        </Link>
       </div>
       {/*Search trip panel */}
       <div className=" top-0 h-screen w-full flex flex-col absolute justify-end">
@@ -229,9 +230,9 @@ const Home = () => {
             onClick={() => {
               setPanelOpen(false);
             }}
-            className="absolute right-8 top-8 text-2xl opacity-0"
+            className="absolute right-8 top-8 text-2xl opacity-0 z-[39999] "
           >
-            <i className="ri-arrow-down-wide-line" />
+            <i className="ri-arrow-down-wide-line z-[3999]" />
           </h5>
           <h4 className="font-semibold text-3xl">Find a trip</h4>
           <form

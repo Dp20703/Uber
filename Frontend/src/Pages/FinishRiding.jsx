@@ -43,7 +43,7 @@ const FinishRiding = (props) => {
             alt="user-pic"
           />
           <h3 className="font-medium text-xl">
-            {props.ride?.user.fullname.firstname}
+            {props.ride?.user.fullname.firstname + " " + props.ride?.user.fullname.lastname}
           </h3>
         </div>
         <h5 className="text-lg font-semibold">2.2 KM</h5>

@@ -82,8 +82,30 @@ module.exports.getUserProfile = async (req, res, next) => {
 
 //this controller function will logout the user:
 module.exports.logoutUser = async (req, res, next) => {
-    res.clearCookie('token');
-    const token = req.cookies.token || req.headers?.authorization.split(' ')[1];
-   await BlacklistTokenModel.create({ token: token });
-    return res.status(200).json({ message: "User Logged out successfully" });
+
+    module.exports.logoutUser = async (req, res) => {
+        try {
+            // Get token from cookies or Authorization header
+            const token = req.cookies.token || req.headers?.authorization?.split(' ')[1];
+
+            if (token) {
+                // Check if token is already blacklisted to avoid duplicate key error
+                const alreadyBlacklisted = await BlacklistTokenModel.findOne({ token });
+
+                if (!alreadyBlacklisted) {
+                    // Store token in blacklist with auto-expiry (handled by schema)
+                    await BlacklistTokenModel.create({ token });
+                }
+            }
+
+            // Clear token cookie
+            res.clearCookie('token');
+
+            return res.status(200).json({ message: "User logout successful" });
+        } catch (error) {
+            console.error("Logout error:", error);
+            return res.status(500).json({ message: "Error logging out", error });
+        }
+    };
+
 }
